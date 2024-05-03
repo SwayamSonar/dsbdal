@@ -1,0 +1,27 @@
+Ass 1
+
+#Data Preprocessing
+df=pd.read_csv("Titanic")
+df.shape
+df.columns
+df.size
+df.dtypes
+df.isnull().sum()
+df.describe()
+df.info()
+
+#Data Formating and Normalizing
+df["Cabin"]=df["Cabin"].replace(to_replace=np.nan, value="unknown")
+df["Age"]=df["Age"].interpolate()
+df.isnull().sum()
+df.dtypes
+df["Age"]=df["Age"].astype("int64")
+df.dtypes
+
+#Converting categorical values into quantitative values
+quantitative_data=pd.get_dummies(df.Embarked, prefix="Embarked")
+quantitative_data
+df.join(quantitative_data)
+df
+df.drop(["Embarked"],axis=2, inplace=True)
+df

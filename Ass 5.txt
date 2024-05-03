@@ -1,0 +1,90 @@
+Ass 5
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+df=pd.read_csv("data/Social_Network_Ads.csv")
+df
+
+#Data Preprocessing
+df.shape
+df.size
+df.columns
+df.dtypes
+df.isnull().sum()
+df.describe()
+df.info()
+
+x=df.iloc[:,[2,3]].values
+x
+
+y=df.iloc[:,4].values
+y
+
+#Splitting data into 75% training and 25% testing
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.25)
+x_train
+x_test.shape
+
+y_test
+y_test.shape
+
+#Data Standardization
+from sklearn.preprocessing import StandardScaler
+sc_x=StandardScaler()
+x_train=sc_x.fit_transform(x_train)
+x_test=sc_x.fit_transform(x_test)
+
+x_train
+
+#Initializing logistic regression
+from sklearn.linear_model import LogisticRegression
+classifier=LogisticRegression(random_state=0)
+classifier.fit(x_train,y_train)
+
+#Prediction
+y_pred=classifier.predict(x_test)
+y_pred
+
+y_test
+
+#Confusion matrix
+from sklearn.metrics import confusion_matrix
+cm=confusion_matrix(y_test,y_pred)
+cm
+
+#Accuracy
+from sklearn.metrics import accuracy_score
+accuracy=accuracy_score(y_test,y_pred)*100
+accuracy
+
+tp=cm[0,[0]]
+tp
+
+fp=cm[0,[1]]
+fp
+
+fn=cm[1,[0]]
+fn
+
+tn=cm[1,[1]]
+tn
+
+#Accuracy_cm
+accuracy_cm=((tp+tn)/(tp+fp+fn+tn))
+accuracy_cm*100
+
+error_rate_cm=((fp+fn)/(tp+fp+fn+tn))
+error_rate_cm*100
+
+precision_cm=(tp/(tp+fp))
+precision_cm*100
+
+recall_cm=(tp/(tp+fn))
+recall_cm*100
+
+specificity_cm=(tn/(tn+fp))
+specificity_cm

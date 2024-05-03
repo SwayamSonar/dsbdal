@@ -1,0 +1,52 @@
+Ass 7
+
+import nltk
+nltk.download("punkt")
+from nltk import tokenize
+from nltk.tokenize import sent_tokenize
+from nltk.tokenize import word_tokenize
+
+text="Good day everyone, how are you all today? Its fun learning data analysis. Hope you all are practicing well."
+text
+
+tokenized_sent=sent_tokenize(text)
+tokenized_sent
+
+tokenized_words=word.tokenize(text)
+tokenized_words
+
+nltk.download("stopwords")
+from nltk.corpus import stopwords
+
+stop_words=set(stopwords.words("english")
+stop_words
+
+filtered_words=[]
+for w in tokenized_words:
+    if w not in stop_words:
+        filtered_words.append(w)
+
+tokenized_words
+
+filtered_words
+
+from nltk.stem import PorterStemmer
+ps=PorterStemmer()
+stemmed_words=[]
+for w in filtered_words:
+    stemmed_words.append(ps.stem(w))
+
+stemmed_words
+
+nltk.download("wordnet")
+from nltk.stem import WordNetLemmatizer
+lem=WordNetLemmatizer()
+word="flying"
+lem.lemmatize(word,'v')
+
+nltk.download("averaged_perceptron_tagger")
+nltk.pos_tag(tokenized_words)
+
+from collections import Counter
+term_frequency=Counter(tokenized_words)
+term_frequency

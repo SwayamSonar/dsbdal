@@ -1,0 +1,30 @@
+Ass 8,9,10
+
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+%matplotlib inline
+
+import piplite
+await piplite.install('seaborn')
+
+import seaborn as sns
+
+df=pd.read_csv("titanic")
+df
+
+sns.distplot(df["Age"],bins=20,kde=False,rug=True)
+
+sns.jointplot(x=df["Age"], y=df["Fare"],kind="Scatter")
+
+sns.barplot(x=df["Sex"],y=df["Age"])
+
+sns.countplot(df["Pclass"])
+
+df["Sex"].value_counts().plot(kind="pie",autopct="%.2f")
+
+pd.crosstab(df["Sex"],df["Survived"])
+
+sns.heatmap(pd.crosstab(df["Sex"],df["Survived"])
+
+sns.clustermap(pd.crosstab(df["Sex"],df["Survived"])
